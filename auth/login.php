@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include '../config/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($username) || empty($password)) {
         $_SESSION['message'] = "Username and password are required.";
-        header("Location: login-form.php");
+        header("Location: ../pages/login-form.php");
         exit();
     }
 
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['email'] = $email;
                 $_SESSION['login_time'] = date('Y-m-d H:i:s');
                 logEvent("LOGIN_SUCCESS", "User '$username' logged in successfully");
-                header("Location: welcome.php");
+                header("Location: ../pages/welcome.php");
                 exit();
             } else {
                 $_SESSION['message'] = "Invalid username or password";
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
     }
 
-    header("Location: login-form.php");
+    header("Location: ../pages/login-form.php");
     exit();
 }
 

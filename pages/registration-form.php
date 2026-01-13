@@ -19,8 +19,8 @@ if (isset($_SESSION['message'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/295/295128.png">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/script.js"></script>
     <title>Register</title>
 </head>
 <body>
@@ -37,7 +37,7 @@ if (isset($_SESSION['message'])) {
             </div>
             <h2 class="form-title">Create Account</h2>
             
-            <form method="post" action="register.php">
+            <form method="post" action="../auth/register.php">
                 <div class="form-group">
                     <label for="fullname">
                         <i class="fa fa-user"></i> Full Name

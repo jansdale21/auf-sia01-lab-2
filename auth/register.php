@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db.php';
+include '../config/db.php';
 
 function isStrongPassword($password) {
     if (strlen($password) < 8) return false;
@@ -20,21 +20,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($fullname) || empty($username) || empty($email) || empty($password)) {
         $_SESSION['message'] = "All fields are required.";
         $_SESSION['toastClass'] = "#dc3545";
-        header("Location: registration-form.php");
+        header("Location: ../pages/registration-form.php");
         exit();
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['message'] = "Invalid email format.";
         $_SESSION['toastClass'] = "#dc3545";
-        header("Location: registration-form.php");
+        header("Location: ../pages/registration-form.php");
         exit();
     }
 
     if (!isStrongPassword($password)) {
         $_SESSION['message'] = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
         $_SESSION['toastClass'] = "#dc3545";
-        header("Location: registration-form.php");
+        header("Location: ../pages/registration-form.php");
         exit();
     }
 
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['toastClass'] = "#dc3545";
             $checkStmt->close();
             $conn->close();
-            header("Location: registration-form.php");
+            header("Location: ../pages/registration-form.php");
             exit();
         }
         $checkStmt->close();
@@ -65,14 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             logEvent("REGISTRATION_SUCCESS", "User '$username' registered successfully");
             $stmt->close();
             $conn->close();
-            header("Location: registration-form.php");
+            header("Location: ../pages/registration-form.php");
             exit();
         } else {
             $_SESSION['message'] = "Error: " . $stmt->error;
             $_SESSION['toastClass'] = "#dc3545";
             $stmt->close();
             $conn->close();
-            header("Location: registration-form.php");
+            header("Location: ../pages/registration-form.php");
             exit();
         }
     } catch (Exception $e) {
@@ -82,11 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($conn)) {
             $conn->close();
         }
-        header("Location: registration-form.php");
+        header("Location: ../pages/registration-form.php");
         exit();
     }
 } else {
-    header("Location: registration-form.php");
+    header("Location: ../pages/registration-form.php");
     exit();
 }
 ?>

@@ -33,7 +33,7 @@ try {
     $_SESSION['message'] = "Database connection failed. Please try again later.";
     $_SESSION['toastClass'] = "#dc3545"; 
     logEvent("DATABASE_CONNECTION_ERROR", "Database connection failed - " . $e->getMessage());
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
